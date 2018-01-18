@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from article.models import Article
 from datetime import datetime
+from django.http import Http404
 
 # Create your views here.
 
@@ -21,6 +22,14 @@ def detail(request, my_agrs):
     post = Article.objects.all()[int(my_agrs)]
     str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
     return HttpResponse(str)
+
+def detail2(request, id):
+    try:
+        post = Article.objects.get(id = str(id))
+    except Article.DoesNotExit:
+        raise Http404
+    return render(request, 'post.html', {'post': post})
+
 
 '''
 def detail(request, my_agrs):

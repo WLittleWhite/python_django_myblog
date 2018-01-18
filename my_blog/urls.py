@@ -19,7 +19,8 @@ from article import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home2),
+    path('', views.home2, name='home2'),
+    path('<id>/', views.detail2, name='detail2'),
                # path('', views.home),
                # path('test/', views.test),
     # path('', views.home, name='home'),
